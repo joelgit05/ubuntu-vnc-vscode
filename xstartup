@@ -1,3 +1,27 @@
 #!/bin/bash
-xrdb $HOME/.Xresources
-startxfce4 &
+
+# Configuración
+IMAGE_NAME="ubuntu-xfce-vnc"
+CONTAINER_NAME="dev-env"
+
+# Construir imagen
+echo "🛠️  Construyendo imagen Docker..."
+if ! docker build -t $IMAGE_NAME .; then
+    echo "❌ Error al construir la imagen"
+    exit 1
+fi
+
+# Ejecutar contenedor
+echo "🚀 Iniciando contenedor..."
+if ! docker run -d \
+    -p 5901:5901 \
+    -p 2222:22 \
+    --name $CONTAINER_NAME \
+    --restart unless-stopped \
+    $IMAGE_NAME; then
+    echo "❌ Error al iniciar el contenedor"
+    exit 1
+fi
+
+# Resultado
+echo -e "\n✅ \e[1mDespliegue completado\e[0m"
