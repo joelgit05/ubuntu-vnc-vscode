@@ -12,5 +12,5 @@ Contenedor Docker con entorno gráfico completo para desarrollo.
 ```bash
 git clone https://github.com/joelgit05/ubuntu-vnc-vscode.git
 cd ubuntu-vnc-vscode
-docker build -t ubuntu-xfce-vnc .
-docker run -d -p 5901:5901 -p 2222:22 --name dev-env ubuntu-xfce-vnc
+Executa els scripts xstartup per fer la imatge i executar el contenidor
+Executa també el start.sh per poder accedir a VNC i SSH
